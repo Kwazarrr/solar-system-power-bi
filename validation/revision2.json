@@ -1,0 +1,12 @@
+{
+  "revision": 2,
+  "checks": [
+    "Unchanged dataset and semantic model bytes",
+    "Microsoft reference PBIR content version 2.0.0",
+    "Page order and active page resolve",
+    "10 visual files resolve",
+    "Base theme metadata and physical resource resolve",
+    "JSON parsing and ZIP integrity"
+  ],
+  "native_Power_BI_Desktop_test": "Pending on user Windows computer"
+}

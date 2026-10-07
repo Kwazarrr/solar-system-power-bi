@@ -1,0 +1,131 @@
+{
+  "name": "Solar System",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "Planets",
+        "columns": [
+          {
+            "name": "OrderFromSun",
+            "dataType": "int64",
+            "sourceColumn": "OrderFromSun",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Planet",
+            "dataType": "string",
+            "sourceColumn": "Planet",
+            "summarizeBy": "none",
+            "sortByColumn": "OrderFromSun"
+          },
+          {
+            "name": "PlanetType",
+            "dataType": "string",
+            "sourceColumn": "PlanetType",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DiameterKm",
+            "dataType": "int64",
+            "sourceColumn": "DiameterKm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DistanceMillionKm",
+            "dataType": "double",
+            "sourceColumn": "DistanceMillionKm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OrbitalPeriodDays",
+            "dataType": "double",
+            "sourceColumn": "OrbitalPeriodDays",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "GravityMS2",
+            "dataType": "double",
+            "sourceColumn": "GravityMS2",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Planets",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #table(",
+                "        {\"OrderFromSun\", \"Planet\", \"PlanetType\", \"DiameterKm\", \"DistanceMillionKm\", \"OrbitalPeriodDays\", \"GravityMS2\"},",
+                "        {",
+                "            {1, \"Mercury\", \"Terrestrial\", 4879, 57.9, 88.0, 3.7},",
+                "            {2, \"Venus\", \"Terrestrial\", 12104, 108.2, 224.7, 8.9},",
+                "            {3, \"Earth\", \"Terrestrial\", 12756, 149.6, 365.2, 9.8},",
+                "            {4, \"Mars\", \"Terrestrial\", 6792, 228.0, 687.0, 3.7},",
+                "            {5, \"Jupiter\", \"Gas giant\", 142984, 778.5, 4331, 23.1},",
+                "            {6, \"Saturn\", \"Gas giant\", 120536, 1432.0, 10747, 9.0},",
+                "            {7, \"Uranus\", \"Ice giant\", 51118, 2867.0, 30589, 8.7},",
+                "            {8, \"Neptune\", \"Ice giant\", 49528, 4515.0, 59800, 11.0}",
+                "        }",
+                "    ),",
+                "    Typed = Table.TransformColumnTypes(Source, {{\"OrderFromSun\", Int64.Type}, {\"Planet\", type text}, {\"PlanetType\", type text}, {\"DiameterKm\", Int64.Type}, {\"DistanceMillionKm\", type number}, {\"OrbitalPeriodDays\", type number}, {\"GravityMS2\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Planet Count",
+            "expression": "COUNTROWS(Planets)",
+            "formatString": "0",
+            "description": "Number of planets in the current selection."
+          },
+          {
+            "name": "Diameter (km)",
+            "expression": "MAX(Planets[DiameterKm])",
+            "formatString": "#,##0",
+            "description": "Equatorial diameter. In multi-planet context: maximum diameter."
+          },
+          {
+            "name": "Distance (million km)",
+            "expression": "MAX(Planets[DistanceMillionKm])",
+            "formatString": "#,##0.0",
+            "description": "Semi-major axis. In multi-planet context: greatest value."
+          },
+          {
+            "name": "Year Length (Earth years)",
+            "expression": "DIVIDE(MAX(Planets[OrbitalPeriodDays]), 365.25)",
+            "formatString": "0.00",
+            "description": "Approximate Earth years, using 365.25 days. In multi-planet context: longest period."
+          },
+          {
+            "name": "Gravity (m per s2)",
+            "expression": "MAX(Planets[GravityMS2])",
+            "formatString": "0.0",
+            "description": "NASA tabulated gravity; giant planets do not have a solid surface."
+          },
+          {
+            "name": "Diameter vs Earth",
+            "expression": "DIVIDE(MAX(Planets[DiameterKm]), CALCULATE(MAX(Planets[DiameterKm]), REMOVEFILTERS(Planets), Planets[Planet] = \"Earth\"))",
+            "formatString": "0.00\" x\"",
+            "description": "Diameter relative to Earth. Denominator ignores planet/type selection."
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ]
+  }
+}

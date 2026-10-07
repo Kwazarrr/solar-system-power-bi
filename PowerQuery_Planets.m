@@ -1,0 +1,17 @@
+let
+    Source = #table(
+        {"OrderFromSun", "Planet", "PlanetType", "DiameterKm", "DistanceMillionKm", "OrbitalPeriodDays", "GravityMS2"},
+        {
+            {1, "Mercury", "Terrestrial", 4879, 57.9, 88.0, 3.7},
+            {2, "Venus", "Terrestrial", 12104, 108.2, 224.7, 8.9},
+            {3, "Earth", "Terrestrial", 12756, 149.6, 365.2, 9.8},
+            {4, "Mars", "Terrestrial", 6792, 228.0, 687.0, 3.7},
+            {5, "Jupiter", "Gas giant", 142984, 778.5, 4331, 23.1},
+            {6, "Saturn", "Gas giant", 120536, 1432.0, 10747, 9.0},
+            {7, "Uranus", "Ice giant", 51118, 2867.0, 30589, 8.7},
+            {8, "Neptune", "Ice giant", 49528, 4515.0, 59800, 11.0}
+        }
+    ),
+    Typed = Table.TransformColumnTypes(Source, {{"OrderFromSun", Int64.Type}, {"Planet", type text}, {"PlanetType", type text}, {"DiameterKm", Int64.Type}, {"DistanceMillionKm", type number}, {"OrbitalPeriodDays", type number}, {"GravityMS2", type number}}, "en-US")
+in
+    Typed

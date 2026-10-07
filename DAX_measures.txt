@@ -1,0 +1,19 @@
+Measures are already included. For manual assembly, create each measure separately.
+
+Planet Count =
+COUNTROWS(Planets)
+
+Diameter (km) =
+MAX(Planets[DiameterKm])
+
+Distance (million km) =
+MAX(Planets[DistanceMillionKm])
+
+Year Length (Earth years) =
+DIVIDE(MAX(Planets[OrbitalPeriodDays]), 365.25)
+
+Gravity (m per s2) =
+MAX(Planets[GravityMS2])
+
+Diameter vs Earth =
+DIVIDE(MAX(Planets[DiameterKm]), CALCULATE(MAX(Planets[DiameterKm]), REMOVEFILTERS(Planets), Planets[Planet] = "Earth"))

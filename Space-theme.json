@@ -1,0 +1,12 @@
+{
+  "name": "Solar System",
+  "dataColors": [
+    "#4267AC",
+    "#51AAB5",
+    "#E0A34A",
+    "#997CC4"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#142843",
+  "tableAccent": "#4267AC"
+}

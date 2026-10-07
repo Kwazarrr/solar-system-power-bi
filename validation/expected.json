@@ -1,0 +1,24 @@
+{
+  "all": {
+    "Planet Count": 8,
+    "Diameter (km)": 142984,
+    "Year Length (Earth years)": 163.72347707049965
+  },
+  "Terrestrial": {
+    "Planet Count": 4,
+    "Diameter (km)": 12756,
+    "Year Length (Earth years)": 1.8809034907597535
+  },
+  "Gas giant": {
+    "Planet Count": 2
+  },
+  "Ice giant": {
+    "Planet Count": 2
+  },
+  "Jupiter": {
+    "Diameter vs Earth": 11.209156475384132
+  },
+  "Earth": {
+    "Diameter vs Earth": 1
+  }
+}
