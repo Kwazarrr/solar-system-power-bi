@@ -1,6 +1,6 @@
 # Solar System Explorer — Power BI
 
-A beginner portfolio project comparing the eight planets using NASA data.
+Power BI dashboard analyzing the eight Solar System planets using NASA data, Power Query and DAX.
 One report page, one table, six DAX measures, two slicers, two charts and a details table.
 
 ## Open
