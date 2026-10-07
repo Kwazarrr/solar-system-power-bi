@@ -3,6 +3,11 @@
 Power BI dashboard analyzing the eight Solar System planets using NASA data, Power Query and DAX.
 One report page, one table, six DAX measures, two slicers, two charts and a details table.
 
+## Dashboard
+
+![Solar System Power BI Dashboard](dashboard.png)
+
+
 ## Open
 1. Extract the entire archive. Keep the .Report and .SemanticModel folders next to SolarSystem.pbip.
 2. Open SolarSystem.pbip in a recent Power BI Desktop on Windows.
